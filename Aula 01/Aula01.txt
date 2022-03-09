@@ -1,0 +1,93 @@
+Escrever o passo a passo da resolução em português
+    Passo 1 - Entrar no sistema da empresa, neste caso o link do drive (https://drive.google.com/drive/folders/149xknr9JvrlEnhNWO49zPcw0PW5icxga)
+    Passo 2 - Navegar no sistema até encontrar a base de dados
+    Passo 3 - Exportar a base de vendas
+    Passo 4 - Calcular os indicadores, no caso os indicadores serão faturamento e quantidade de produtos vendidos
+    Passo 5 - Enviar em email para a diretoria com os indicadores.
+
+Instalar pyautogui -> uma das milhares bibliotecas do python
+    pyautogui automatiza o mouse, o teclado e a teclado
+    pyperclip instala junto com o pyautogui
+
+    Instalar
+        *pip install pyautogui
+        *pip install pyperclip
+    Rodar
+        import pyautogui
+        import pyperclip
+        import time # permite pausar o cod por alguns segundos e já vem instalado
+        import pandas as pd
+
+    
+    Sempre que for trabalhar com base de dados no python, utilizar o PANDAS (instalar o pandas, numpy e openpyxl)
+Passo 1
+
+pyautogui.PAUSE = 1 #pausa de 1 segundo entre cada comando
+
+    pyautogui.press('win')
+    pyautogui.write('chrome')
+    pyautogui.press('enter')
+    time.sleep(2)
+    pyautogui.hotkey('alt','space','x') #maximizar o google chrome
+    pyautogui.hotkey('ctrl','t')
+    pyperclip.copy('https://drive.google.com/drive/folders/149xknr9JvrlEnhNWO49zPcw0PW5icxga')
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.press('enter')
+
+    time.sleep(3) #depois do comando anterior ele espera 3 segundos
+
+Passo 2
+
+    pyautogui.click(x=419, y=257, clicks=2)
+
+    #time.sleep(5) #pausa o cod por 5 segundos
+    #pyautogui.position(), #esse codigo fala a posição atual do mouse
+
+Passo 3
+
+    pyautogui.click(x=440, y=317)
+    pyautogui.click(x=1163, y=161)
+    pyautogui.click(x=1006, y=579)
+
+Passo 4
+
+    tabela = pd.read_excel(r'C:\Users\1801 Desktop\Downloads\Vendas - Dez.xlsx', sheets=1) #numero da aba ou o nome da aba, se for a primeira pode deixar sem
+        #sempre colocar o r na frente do caminho do arquivo \n e \t é um caracter especial, com o r na frente ele ignora o caracter especial
+    
+    faturamento = tabela['Valor Final'].sum()
+    quantidade = tabela['Quantidade'].sum()
+
+    print(f'faturamento total: {faturamento}, quantidade total: {quantidade}')
+
+Passo 5
+
+    pyautogui.hotkey('ctrl','t')
+    pyperclip.copy('https://mail.google.com/')
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.press('enter')
+    time.sleep(5)
+
+    pyautogui.click(x=112, y=181)
+    time.sleep(2)
+
+    pyautogui.write('maaminaya@gmail.com')
+    pyautogui.press('tab')
+    pyautogui.press('tab')
+    pyautogui.write('amu tu')
+    pyautogui.press('tab')
+    texto =f'''
+        Te Amu muito meu amol,
+        Obligado pul sempli estal du meu lado!!
+        Bola pla cima que é tudo nosso!! ♥
+        obs.: ignola essa palte de baixu hihi
+
+        Exercício de Python:
+        O faturamento de ontem foi de: R$ {faturamento:,.2f} #.2f para rodar com duas casas decimais
+        A quantidade de produtos foi de: {quantidade,}
+'''
+        # formatar o texto com a variavel dentro
+
+    pyperclip.copy(texto)
+    pyautogui.hotkey('ctrl','v')
+
+    pyautogui.hotkey('ctrl','enter')
