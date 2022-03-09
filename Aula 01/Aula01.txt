@@ -51,7 +51,7 @@ Passo 3
 
 Passo 4
 
-    tabela = pd.read_excel(r'C:\Users\1801 Desktop\Downloads\Vendas - Dez.xlsx', sheets=1) #numero da aba ou o nome da aba, se for a primeira pode deixar sem
+    tabela = pd.read_excel(r'caminho do arquivo.xlsx')', sheets=1) #numero da aba ou o nome da aba, se for a primeira pode deixar sem
         #sempre colocar o r na frente do caminho do arquivo \n e \t é um caracter especial, com o r na frente ele ignora o caracter especial
     
     faturamento = tabela['Valor Final'].sum()
