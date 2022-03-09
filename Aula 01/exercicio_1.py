@@ -27,7 +27,7 @@ pyautogui.click(x=1006, y=579)
 
 time.sleep(4)
 
-tabela = pd.read_excel(r'C:\Users\1801 Desktop\Downloads\Vendas - Dez.xlsx')
+tabela = pd.read_excel(r'caminho do arquivo.xlsx')
 
 faturamento = tabela['Valor Final'].sum()
 quantidade = tabela['Quantidade'].sum()
