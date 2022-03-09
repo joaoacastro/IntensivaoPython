@@ -1,0 +1,74 @@
+Passo 1 - Importar a base de dados para o Python
+Passo 2 - Visualizar essa base de dados
+Entender as informações que você tem disponível
+Descobrir os problemas da base de dados
+Passo 3 - Tratamento de dados
+Passo 4 - Análise Inicial/Análise Global
+Passo 5 - Análise Detalhada (buscar a causa/solução dos cancelamentos)
+
+import pandas as pd
+
+Passo 1
+tabela = pd.read_csv(r'G:\DEV_Codigos\vscode\Curso Intensivão Python\Aula 02\telecom_users.csv')
+
+Passo 2
+print(tabela)
+
+** Em Análise de dados o que não te ajuda, te atrapalha!
+
+Passo 3
+tabela = tabela.drop('Unnamed: 0', axis=1 ) #drop permite ocultar uma linha ou uma coluna da tabela #axis => eixo 0 = linha | 1 = coluna
+                                            #no caso se quiser ocultar mais de uma coluna, pode seguir da seguinte forma (['Unnamed: 0', 'Genero', 'Casado'])
+
+Analisar se o Python esta lendo as informações no formato correto
+Sempre que importar uma base de dados para o python, vc qr analisar como esta sendo lida
+    print(tabela.info())
+    Mudar coluna TotalGasto em coluna numérica, pois no caso está como objeto
+
+    tabela['TotalGasto'] = pd.to_numeric(tabela['TotalGasto'], errors='coerce') => transformar em numérico | coerce => se não conseguiu transformar em número ele ignora
+
+será que existe alguma coluna completamente vazia?
+    dropna => how e o axis
+    tabela = tabela.dropna(how='all', axis=1) how => all ou any
+
+será que existe alguma informação em alguma linha vazia?
+    tabela = tabela.dropna(how='any', axis =0)
+
+Passo 4
+quantos clientes cancelaram e quantos não cancelaram
+    print(tabela['Churn'].value_counts()) value_counts => contar os valores da coluna
+
+o % de cliente que cancelou e o % que não cancelou
+    print(tabela['Churn'].value_counts(normalize=True).map('{:.1%}'.format)) normalize=True => retorna como "porcentagem" e o .map => formata em porcentagem com 1 casa decimal
+
+Passo 5
+install plotly |  Plotly => grafico em python
+import plotly.express as px
+
+Criar o gráfico
+    for coluna in tabela.columns:
+        grafico = px.histogram(tabela, x=coluna, color='Churn') => plotly.com/python/histograms/
+
+        Exibir o gráfico
+        grafico.show()
+
+Conclusões com base nos gráficos:
+    Cliente tem muita chance de cancelar nos primeiros meses
+        trazendo clientes desqualificados
+        problema de retenção de clientes
+
+    Pessoas com famílias na mesma operadora tem menos chance de cancelar
+        fazer um 2o numero gratuito ou com um bom desconto
+
+    Quanto mais serviços o cliente tem, menor a chance de ele cancelar
+        dar um serviço por 1 real a mais ou até de graça
+    
+    Algum problema no serviço de fibra
+        taxa de cancelamento de fibra ta muito maior
+        olhar mais a fundo o que pode estar acontecendo com o serviço de fibra
+    
+    Contrato mensal tem muito mais cancelamento
+        dar desconto para o cara mudar para o pagamento anual ou 2 anos
+    
+    taxa de cancelamento por boleto é muito maior
+        dar desconto nas outras formas de pagamento
