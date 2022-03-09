@@ -41,17 +41,12 @@ time.sleep(5)
 pyautogui.click(x=112, y=181)
 time.sleep(2)
 
-pyautogui.write('maaminaya@gmail.com')
+pyautogui.write('teste@gmail.com')
 pyautogui.press('tab')
 pyautogui.press('tab')
-pyautogui.write('amu tu')
+pyautogui.write('Faturamento da Empresa')
 pyautogui.press('tab')
 texto = f'''
-        Te Amu muito meu amol,
-        Obligado pul sempli estal du meu lado!!
-        Bola pla cima que é tudo nosso!! ♥
-        obs.: ignola essa palte de baixu hihi
-
         Exercício de Python:
         O faturamento de ontem foi de: R$ {faturamento:,.2f}
         A quantidade de produtos foi de: {quantidade}
