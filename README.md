@@ -21,3 +21,24 @@ Automatizando serviços:
 * Análise Detalhada (buscar a causa/solução dos cancelamentos)
 
 #### Utilizando: Python, Pandas e plotly
+
+## Aula 03 - Automação Web e Busca de Informações com Python
+
+* Importar a base de dados do excel para o Python
+* Visualizar e importar essa base de dados
+* Pesquisar as cotações das moedas;
+* Armazenar as informações;
+* Preencher a cotação em uma planilha em excel.
+
+#### Utilizando: Python, Selenium, Pandas.
+
+## Aula 04 - Projeto Ciência de Dados - Previsão de VEndas
+
+* Entender o desafio;
+* Extração/Obtenção de Dados;
+* Ajuste de Dados;
+* Análise Exploratória;
+* Modelagem e Algoritmos
+* Interpretação de Resultados.
+
+#### Utilizando: Python, Pandas, matplotlib, seaborn, scikit-learn
